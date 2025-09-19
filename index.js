@@ -15,7 +15,7 @@ const app = express();
 const distPath = path.join(__dirname, "dist");
 app.use(express.static(distPath));
 
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
@@ -28,9 +28,9 @@ app.use(
 );
 app.use(express.json());
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(distPath, "index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(distPath, "index.html"));
+});
 
 app.get("/", (req, res) => {
   res.send("API is running...");
@@ -40,6 +40,7 @@ import allRoutes from "./routes/index.js";
 import path from "path";
 app.use("/api", allRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
+export default app;
