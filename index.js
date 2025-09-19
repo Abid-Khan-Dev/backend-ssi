@@ -27,7 +27,6 @@ app.use(express.json());
 
 // Import and use all routes
 import allRoutes from "./routes/index.js";
-import path from "path";
 app.use("/api", allRoutes);
 
 /// Serve static files from the React app
