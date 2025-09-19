@@ -3,7 +3,6 @@ import { apiError, apiSuccess } from "../utils/response.js";
 
 export const contact = async (req, res) => {
   try {
-    console.log(req.body);
     const { fullname, email, message } = req.body;
     if (!fullname || !email || !message) {
       return apiError(res, "All fields are required.", 400);

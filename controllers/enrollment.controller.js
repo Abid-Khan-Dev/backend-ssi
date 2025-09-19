@@ -3,22 +3,35 @@ import { apiError, apiSuccess } from "../utils/response.js";
 
 export const enroll = async (req, res) => {
   try {
-    console.log(req.body);
-    const { fullname, email, phone, course } = req.body;
+    const {
+      name,
+      fatherName,
+      education,
+      address,
+      applyFor,
+      referredBy,
+      email,
+      phoneNO,
+      terms,
+    } = req.body;
 
-    if (!fullname || !email || !phone || !course) {
+    if (!name || !email || !phoneNO || !applyFor || !address || !terms) {
       return apiError(res, "All fields are required.", 400);
     }
 
-    const isExisting = await Enrollment.findOne({ email, course });
+    const isExisting = await Enrollment.findOne({ email, applyFor });
     if (isExisting) {
       return apiError(res, "You are already enrolled in this course.", 409);
     }
     const enrollment = new Enrollment({
-      fullname,
+      name,
+      fatherName,
+      education,
+      address,
+      applyFor,
+      referredBy,
       email,
-      phone,
-      course,
+      phoneNO,
     });
 
     await enrollment.save();

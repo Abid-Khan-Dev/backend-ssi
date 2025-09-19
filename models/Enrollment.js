@@ -2,32 +2,57 @@ import mongoose from "mongoose";
 
 const enrollmentSchema = new mongoose.Schema(
   {
-    fullname: {
+    name: {
       type: String,
       minlength: 3,
       maxlength: 20,
-      trime: true,
+      trim: true,
       required: true,
+    },
+    fatherName: {
+      type: String,
+      maxlength: 20,
+      trim: true,
     },
     email: {
       type: String,
       minlength: 3,
       maxlength: 40,
-      trime: true,
-      unique: true,
-      required: true,
+      trim: true,
     },
-    phone: {
+    phoneNO: {
       type: String,
       maxlength: 20,
-      trime: true,
+      trim: true,
       required: true,
-      default: "",
     },
-    course: {
+    education: {
       type: String,
-      trime: true,
+      minlength: 3,
+      maxlength: 100,
+      trim: true,
       required: true,
+    },
+    address: {
+      type: String,
+      minlength: 3,
+      maxlength: 100,
+      trim: true,
+      required: true,
+    },
+    referredBy: {
+      type: String,
+      trim: true,
+    },
+
+    applyFor: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    mongodbAtlasBackup: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
